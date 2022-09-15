@@ -42,10 +42,14 @@ Hydrophobia is about a robot named Robert who is trying to speedrun through port
 3. Build from editor
 4. Run from VS and Unreal should open
 
+## Modules Completed
+- [UE5 Blueprints to C++](https://dev.epicgames.com/community/learning/courses/KJ/converting-blueprint-to-c/kjB/unreal-engine-introduction-to-blueprint-vs-c)
+- [Udemy Unreal Engine Tutorial by David Nixon](https://www.udemy.com/course/unreal-engine-5-the-complete-beginners-course/)
+
 ## References
 - [Unreal Engine Documentation](https://docs.unrealengine.com/5.0/en-US/paper-2d-in-unreal-engine/)
 - [Sound Generator](https://sfxr.me/)
 - [Sprite Editor](https://www.piskelapp.com/)
-- [Udemy Unreal Engine Tutorial by David Nixon](https://www.udemy.com/course/unreal-engine-5-the-complete-beginners-course/)
+
 
 
