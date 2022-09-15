@@ -17,18 +17,18 @@ Hydrophobia is about a robot named Robert who is trying to speedrun through port
 
 ## Stack
 - Unreal Engine
- - Blueprints (kismet library)
- - Level Editor
- - Objects within the engine (Actors, GameInstance, Levels, etc.)
- - UMG widgets
- - Animation timelines
+  - Blueprints (kismet library)
+  - Level Editor
+  - Objects within the engine (Actors, GameInstance, Levels, etc.)
+  - UMG widgets
+- Animation timelines
   - Lerp nodes
 - Paper 2D plugin
- - Tilesets
- - Flipbooks
+  - Tilesets
+  - Flipbooks
 - C++
- - Casting
- - Blueprint accessibility
+  - Casting
+- Blueprint accessibility
   - UPROPERTY
   - UFUNCTION
   - Enumeration
