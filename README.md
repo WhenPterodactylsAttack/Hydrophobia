@@ -3,6 +3,17 @@
 
 ## Description
 2D-Platform Game built on Unreal
+Hydrophobia is about a robot named Robert who is trying to speedrun through portals. His mortal enemies consist of water and clouds. Try to help Robert complete his quest to be the fastest robot in some obscure forest. 8 hand-crafted action packed levels included.
+
+## Game Mechanics
+- Collect chips to enter a portal at the end of a level to proceed
+- Use platforms to traverse through levels
+- Timing jumps on certain platforms can give you extra height
+- Dash to avoid enemies and horizontal speed
+
+## Game Controls
+- WASD or arrows to move
+- Space bar to dash
 
 ## Stack
 - Unreal Engine
