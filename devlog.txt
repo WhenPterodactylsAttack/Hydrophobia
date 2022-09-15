@@ -1,0 +1,237 @@
+**Hydrophobia Dev Log	
+	• Day 1
+		○ Game concept and outlined design
+			§ Player will control Robert, a robot
+				□ Simple and recognizable character
+				□ Can do conventional platformer actions
+			§ Gameplay loop
+				□ Robert will need to collect SD Cards to open a door to proceed
+				□ Add a timer to have player try to beat their own high scores
+		○ Struggles
+			§ Took about an hour to draw up a likeable character concept as well as mechanics that will fit said character
+	• Day 2
+			§ Outline character animations
+			§ Developed idle and walking animations for Robert
+			§ Struggles
+				□ Walking animations very difficult to animate for pixel art
+	• Day 3
+		○ More animations
+			§ Jumping
+			§ Dashing
+			§ SD Card (level key)
+		○ Struggles
+			§ Lots of time figuring out keyframes
+	• Day 4
+		○ Level sprites
+			§ Background
+			§ Moving platform
+			§ Teleporter (level goal)
+		○ Struggles
+			§ None today surprisingly
+	• Day 5
+		○ Exported all sprites to PNGs
+			§ Took about an hour to get everything onto sprite sheets and export to unreal
+			§ Organized all animation and level design elements into specific folders
+		○ Imported PNGs to Unreal
+		○ Converted to flipbooks
+		○ Struggles
+			§ Took about 30 minutes to figure out how to convert PNGs to paper tile set so that PNGs don't lose detail in pixels
+			§ "Apply paper 2d paper texture settings"
+			§ A lot of time was taken to even get all the sprites in and named properly
+	• Day 6
+		○ Learned more about Unreal Engine's tileset capabilities
+			§ How to create one
+			§ How to size and fit sprites
+		○ Added grass corner and side blocks
+		○ Added all six grass and dirt block sprites to a tileset
+		○ Added camera to player_character sprite
+			§ Camera kept falling through the world despite character not moving
+			§ Figured out that I had to set the sprite to be possessed in order to be able to use the camera
+		○ Struggles
+			§ Attempted to add cpp child class of the PaperCharacter in order to add and edit cpp variables
+				□ Unsuccessful after 3 hours of troubleshooting
+				□ Reached out to people experienced with the engine and searched forums to no avail
+				□ Unable to reference PaperCharacter.h, despite referencing all the correct files
+				□ Have tried numerous fixes including:
+					® Deleting and redoing the class
+					® Deleting and recompiling in visual studio
+					® Building from visual studio
+				□ Am able to reference Character.h properly, so could possible be due to Paper2d being a plugin
+	• Day 7
+		○ Spent another hour trying to troubleshoot adding cpp functionality to the Paper2d function
+		○ Decided to just use blueprints instead. Will attempt to add cpp code to the game mode, enemies, and hovering platforms
+		○ Had to split jump animation into a start jump and end jump
+		○ Added jump animation flipbook
+	• Day 8
+		○ Created dying and dashing animations
+		○ Created player_character
+			§ Scripted basic movement and jumping using WASD
+		○ Struggles
+			§ Added animations, but having a lot of troubleshooting issues
+			§ Camera rotation glitch (moves with character direction)
+			§ Only idle animation is playing
+			§ Getting late so will continue tomorrow
+	• Day 9
+		○ Fixed camera rotation glitch
+			§ Just needed to change camera attached to main sprite to world rather than relative
+		○ Character can now turn left and right properly, which is really neat!
+		○ Looking into different ways of adding animations
+		○ Started out adding them manually, but just 3 took a significant amount of time
+		○ Looking into something called an animation state machine
+		○ Struggles
+			§ Jump animation looks like it won't be able to be inserted into the game easily. It's one motion, and would only be able to fit a single jump timed in a certain way, so need to split it up
+	• Day 10
+		○ Split jump animation into 3 parts
+			§ Start jump, where Robert squats and hops a bit
+			§ Falling animation
+			§ End jump, where there's a bit of an impact when he hits the ground
+		○ Revamped animation system by using an animation state machine
+			§ Is a really cool bit of technology available for blueprints users
+			§ Essentially takes character variables and bools and assigns an animation based off of that
+			§ Utilizes enumeration to store all the different animations
+		○ Struggles
+			§ Taking a long time to plan out all the different ways character can move and my graph is starting to look like spaghetti
+	• Day 11
+		○ Added several flipbooks as animation flipbook variables
+			§ Jump start
+			§ Jump end
+			§ Falling
+			§ Walking
+			§ Dying
+			§ Dashing
+		○ Completed animation state machine layout
+		○ Now just need to edit event graph so it can feed the animation state machine necessary information
+	• Day 12
+		○ Finally finished animation state machine, and cut down a lot of the overcomplications I had
+		○ Struggles
+			§ Spent a good 4 hours trying to figure out why certain animations weren't working
+			§ Turns out was using global rather than local variables within the animation state machine
+			§ Jumping took the majority of my time due to figuring out the logic and computation for each state
+				□ Are they alive?
+				□ Are they falling?
+				□ Are they moving?
+				□ Made a giant <and> <or> checker for this, but figured there was an easier way rather than having velocity in certain direction checks
+				□ Turns out, Unreal has a built in function for characters called isFalling that returns the state a character is in
+				□ Had an issue where the start jump animation would loop over and over again
+					® Fixed by just adding a set is jumping true, delay, set jump false
+	• Day 13
+		○ Finished up touches on animation state machine and logic
+		○ Started tackling visual issue with tiles where there's flickering between each tile in a tileset
+			§ Never fixed before because it didn't hinder gameplay, but it's really distracting
+			§ Messed with lighting and camera for a few hours and searched for solutions online but no progress
+			§ Finally found a really obscure forum that ran into the same issue
+			§ The fix is to add padding
+				□ Easy fix: Unreal has a function built in to add padding just needed to right click "Condition tile sheet texture"
+				□ Poof, problem gone
+		○ Struggles
+			§ Listed above
+	• Day 14
+		○ Added moving platform
+		○ Wasn't able to complete scripting, will continue tomorrow
+	• Day 15
+		○ Reorganized all sprites into designated folders for easier accessibility
+		○ Continue to work on moving platform
+		○ Huge issue where platform cannot be moved nor location be set. Even if can move on world map, playtesting would always result in platform going back to
+		○ Learned what the issue was. Turns out there needs to be a base scene which I had initially made the sprite. Turns out since I had both a collision box and a sprite, and since the collision box was linked to the sprite, I was only moving the box, and not the sprite, hence why it kept anchoring back to origin
+		○ Learned to properly use instance editable. This allows your variables for an instance to be edited in the editor so you can change data for specific objects in the editor. This means I can edit the time it takes my platform to make a loop as well as the delay between each loop, rather than being locked to a single timeframe like the moving platforms from the Udemy course I took
+		○ Added a second collision box so the player cannot be crushed by the moving platform
+	• Day 16
+		○ Started adding dash mechanic
+		○ Finished adding dash mechanic
+			§ Used launch function and added dash multiplier and delay variable for easy data manipulation
+		○ Added immobile enemy
+		○ STRUGGLES
+			§ Huge file corruption to blueprints
+			§ 
+			§ Happened immediately after adding immobile enemy
+			§ Instantaneous crash when loading test level
+			§ Tried deleting test level
+			§ Able to get onto editor without crashing immediately
+			§ Any sort of interaction with blueprints causes engine to crash
+			§ Spent around 2 hours looking for a fix and attempting to delete temp files
+			§ Reinstalled engine
+			§ No feasible fix
+			§ Creating a new project and migrating files over
+	• Day 17
+		○ Was able to salvage most of the blueprints from old project, but player_character was completely corrupted and was the cause of the crashing
+			§ Had to redo the whole file
+		○ Am now constantly add backups so files can be reverted rather than losing progress to file corruption
+		○ Added player respawning
+		○ Added death animations
+		○ Added death noise
+		○ Struggles
+			§ Redoing player_character was incredibly time consuming due to it being the largest of the files
+	• Day 18
+		○ Began translating some blueprint data into cpp files
+		○ Created Master actor so player_character can be referenced
+		○ Added a parent cpp_player_character to player_character
+		○ Started by moving all the variables to cpp files
+		○ Translated move_left and move_right to cpp
+		○ Translated all variables except for flipbooks to cpp
+		○ Struggles
+			§ Power went out
+				□ Cpp files stopped loading and a lot of files broke down due to cpp dependencies
+					® Fixed by just building from Rider
+			§ Significant amount of time taken trying to search up syntax for enumeration
+			§ Attempted to migrate Paper Flipbook components but not worthwhile in the long run
+	• Day 19
+		○ Added timer
+			§ Minutes
+			§ Seconds
+			§ Milliseconds
+		○ Added pixelated font
+		○ Struggles
+			§ Renaming a text box would cause the text widget to be blueprint unreadable
+		○ Converted timer and increase timer function to CPP code
+		○ Converted fonts to offline cached
+		○ Struggles
+			§ Took a while to figure out that offline cash meant that the fonts had to be downloaded directly to the computer
+	• Day 20
+		○ Messed around with instances to store player time
+		○ Constructed load time function located within the timer itself
+		○ Constructed store time within the teleporter. May need to change location if presents issues in the future
+		○ Added final teleporter to be linked to win_screen widget
+		○ Small fixes
+			§ Player can't move when win_screen is displayed
+			§ Anchored text to center
+		○ Added more levels
+		○ Added text actor
+		○ Cleaned up code and blueprints and added more comments
+		○ Reorganized all content folders
+		○ Struggles
+			§ A lot of references were breaking
+			§ Had to ensure that all of the different classes were linked to cpp_master_actor
+	• Day 21
+		○ Added capability for multiple chips to activate teleporter
+		○ Created chips left widget
+		○ Added moving puddle enemy
+		○ Added moving cloud enemy
+		○ Added falling platform
+		○ Added teleport noise
+		○ Condensed blueprint parts into functions
+		○ Struggles
+			§ Started running into issues with cpp master actor
+			§ Will swap back to BP_master_actor
+			§ Failed to test package the game
+	• Day 22
+		○ Added more levels for a total of 8, all of which go over key mechanics of the game
+		○ Finally able to export project
+			§ UMG Editor within .uproject causes errors
+		○ Finalized and uploaded to github
+		
+		
+	• Blueprints vs. cpp
+		○ Want to use cpp for more data oriented classes, such as game modes, scores, inventory, etc.
+		○ CPP is significantly easier and faster for math calculations
+		○ Blueprints for more design oriented programming, such as characters, enemies, levels, etc.
+		○ Blueprints are significantly easier to use for visuals and animation
+		○ BLUEPRINTS can see CPP, but CPP cannot see BLUEPRINTS
+		○ USE BOTH
+			§ Supposedly, a good way of programming is by setting the base class as a cpp file, and the derived child class a blueprint so we can design visual elements quickly, but the internals coded quickly as well
+	• Tips
+		○ MAKE BACKUPS FREQUENTLY
+		○ Always try to build from your coding editor or sometimes files may not show up
+		○ When making sprites, to avoid rendering artifacts for 2d games, make padding of 1 pixel
+		○ Generate a list of data you want to be transferred between levels (health, time, items, etc.)
+		○ Can step into a lot of the blueprints by double clicking in order to figure out which function to use in cpp
+		○ Delete UMG Editor in .uproject
