@@ -15,7 +15,6 @@
  - Tilesets
  - Flipbooks
 - C++
- - Inheritance
  - Casting
  - Blueprint accessibility
   - UPROPERTY
@@ -31,5 +30,10 @@
 3. Build from editor
 4. Run from VS and Unreal should open
 
+## References
+- [Unreal Engine Documentation](https://docs.unrealengine.com/5.0/en-US/paper-2d-in-unreal-engine/)
+- [Sound Generator](https://sfxr.me/)
+- [Sprite Editor](https://www.piskelapp.com/)
+- [Udemy Unreal Engine Tutorial by David Nixon](https://www.udemy.com/course/unreal-engine-5-the-complete-beginners-course/)
 
 
