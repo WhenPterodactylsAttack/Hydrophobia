@@ -15,6 +15,7 @@
  - Tilesets
  - Flipbooks
 - C++
+ - Inheritance
  - Casting
  - Blueprint accessibility
   - UPROPERTY
