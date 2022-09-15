@@ -8,4 +8,4 @@
 *.sln
 *.sdf
 *.suo
-*.user
+.vs/
